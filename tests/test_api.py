@@ -33,7 +33,7 @@ def test_can_create_employee():
     response = requests.post(ENDPOINT + "/employee", data=payload.json())
     assert response.status_code == status.HTTP_200_OK
     
-    delete_user(payload.username, payload.password)
+    assert delete_user(payload.username, payload.password)
 
 def test_can_generate_token():
     emp_payload = basic_employee
@@ -50,11 +50,11 @@ def test_can_generate_token():
     get_emp_request = requests.get(ENDPOINT + f"/employee/{token}")
     assert get_emp_request.status_code == status.HTTP_200_OK
     
-    delete_user(emp_payload.username, emp_payload.password)
-    delete_token(token)
+    assert delete_user(emp_payload.username, emp_payload.password)
+    assert delete_token(token)
 
 def delete_user(username: str, password: str):
     return requests.delete(ENDPOINT + f"/employee/{username}", params={'password': password})
 
 def delete_token(token: str):
-    return requests.delete(ENDPOINT + "/employee/token", params={'token': token})
+    return requests.delete(ENDPOINT + f"/employee/token/{token}")

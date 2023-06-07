@@ -18,7 +18,7 @@ def generate_token(request: TokenGenerator, db: Session = Depends(get_db)):
     """
     return db_token.generate_token(db, request)
 
-@router.delete('/', summary='Delete a token')
+@router.delete('/{token}/', summary='Delete a token')
 def delete_token(token: UUID, db: Session = Depends(get_db)):
     """
     Deletes an token from the database by **token**.
