@@ -6,9 +6,6 @@ db_pass = '' # Postgres data base password
 db_port = '' # Postgres data base port
 db_name = '' # Postgres data base name
 
-if not(db_user and db_pass and db_port and db_name):
-    raise TypeError('Provide the db info!')
-
 class Settings(BaseSettings):
     token_validity_period: timedelta = timedelta(
         days=7,
@@ -28,4 +25,7 @@ class DefaultSettings(Settings):
 try:
     settings = DockerSettings()
 except:
+    if not(db_user and db_pass and db_port and db_name):
+        raise TypeError('Provide the db info!')
     settings = DefaultSettings()
+    
