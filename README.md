@@ -19,10 +19,10 @@
 Клонирование репозитория
 
 ```bash
-$ git clone https://github.com/TriNitki/tg_case_bot
+$ git clone https://github.com/TriNitki/shift_zadanie
 ```
 
-### Дефолтная установка
+### Локальная установка
 
 1. Установка необходимых пакетов
 
